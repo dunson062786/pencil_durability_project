@@ -13,7 +13,7 @@ defmodule PencilDurabilityProject do
   end
 
   def write(pencil, pad, text) do
-    {[{:durability, pencil[:durability] - calculateLength(text)}, {:length, 5}], pad <> text}
+    {[{:max_durability, pencil[:max_durability]}, {:durability, pencil[:durability] - calculateLength(text)}, {:length, 5}], pad <> text}
   end
 
   defp calculateLength(text) do
