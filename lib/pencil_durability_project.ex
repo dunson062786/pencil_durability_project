@@ -12,8 +12,8 @@ defmodule PencilDurabilityProject do
     
   end
 
-  def write(pencil, pad) do
+  def write(pencil, pad, text) do
     
   end
-  
+
 end
