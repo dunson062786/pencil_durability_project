@@ -1,18 +1,19 @@
 defmodule PencilDurabilityProject do
-  @moduledoc """
-  Documentation for PencilDurabilityProject.
-  """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> PencilDurabilityProject.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def sharpen(pencil) do
+    
   end
+
+  def erase(pencil, pad) do
+    
+  end
+
+  def edit(pencil, pad) do
+    
+  end
+
+  def write(pencil, pad) do
+    
+  end
+  
 end
