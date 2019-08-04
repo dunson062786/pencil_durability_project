@@ -7,6 +7,11 @@ defmodule PencilDurabilityProjectTest do
     assert PencilDurabilityProject.sharpen(pencil) == [{:max_durability, 40_000}, {:durability, 40_000}, {:length, 4}]
   end
 
+  test "sharpening a pencil of length one gets rid of the pencil" do
+    pencil = [{:max_durability, 40_000}, {:durability, 5}, {:length, 1}]
+    assert PencilDurabilityProject.sharpen(pencil) == nil
+  end
+
   test "writes text and decreases durability of pencil" do
     pencil = [{:max_durability, 40_000}, {:durability, 40_000}, {:length, 5}]
     pad = ""
