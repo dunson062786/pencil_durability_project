@@ -1,7 +1,7 @@
 defmodule PencilDurabilityProject do
 
   def sharpen(pencil) do
-    
+    [{:max_durability, pencil[:max_durability]}, {:durability, pencil[:max_durability]}, {:length, pencil[:length] - 1}]
   end
 
   def erase(pencil, pad) do
