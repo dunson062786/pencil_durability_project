@@ -2,6 +2,11 @@ defmodule PencilDurabilityProjectTest do
   use ExUnit.Case
   doctest PencilDurabilityProject
 
+  test "sharpening reduces the length of the pencil by one and resets its durability" do
+    pencil = [{:max_durability, 40_000}, {:durability, 5}, {:length, 5}]
+    assert PencilDurabilityProject.sharpen(pencil) == {[{:max_durability, 40_000}, {:durability, 40_000}, {:length, 4}]}
+  end
+
   test "writes text and decreases durability of pencil" do
     pencil = [{:max_durability, 40_000}, {:durability, 40_000}, {:length, 5}]
     pad = ""
