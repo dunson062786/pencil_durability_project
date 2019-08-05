@@ -26,4 +26,11 @@ defmodule PencilDurabilityProjectTest do
     assert PencilDurabilityProject.write(pencil, pad, text) == {[{:max_durability, 40_000}, {:durability, 39_995}, {:length, 5}], "aaAb"}
   end
 
+  test "writes spaces if durability is zero" do
+    pencil = [{:max_durability, 40_000}, {:durability, 4}, {:length, 5}]
+    pad = ""
+    text = "Text"
+    assert PencilDurabilityProject.write(pencil, pad, text) == {[{:max_durability, 40_000}, {:durability, 0}, {:length, 5}], "Tex "}
+  end
+
 end
