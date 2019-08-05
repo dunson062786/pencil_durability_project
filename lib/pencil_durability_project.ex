@@ -16,10 +16,10 @@ defmodule PencilDurabilityProject do
 
   def write(pencil, pad, text) do
     cond do
-      calculateLength(text) > pencil[:durability] -> {
+      calculateDurabilityLength(text) > pencil[:durability] -> {
         [
           {:max_durability, pencil[:max_durability]}, 
-          {:durability, pencil[:durability] - calculateLength(prefix(text, pencil[:durability]))}, 
+          {:durability, pencil[:durability] - calculateDurabilityLength(prefix(text, pencil[:durability]))}, 
           {:length, pencil[:length]}
         ], 
         pad <> String.pad_trailing(prefix(text, pencil[:durability]), String.length(text))
@@ -27,7 +27,7 @@ defmodule PencilDurabilityProject do
       true -> {
         [
           {:max_durability, pencil[:max_durability]},
-          {:durability, pencil[:durability] - calculateLength(text)}, 
+          {:durability, pencil[:durability] - calculateDurabilityLength(text)}, 
           {:length, pencil[:length]}
         ],
         pad <> text
@@ -35,19 +35,19 @@ defmodule PencilDurabilityProject do
     end
   end
 
-  defp calculateLength(text) do
+  defp calculateDurabilityLength(text) do
     numberOfLowercaseLetters = Regex.scan(~r/[a-z]/, text) |> Enum.count
     numberOfUppercaseLetters = Regex.scan(~r/[A-Z]/, text) |> Enum.count
     numberOfUppercaseLetters*2 + numberOfLowercaseLetters
   end
 
-  defp prefix(text, length) do
+  defp prefix(text, durability_length) do
     first_letter = String.at(text, 0)
-    first_letter_length = calculateLength(first_letter)
+    first_letter_durability_length = calculateDurabilityLength(first_letter)
     cond do
-      length == 0 -> ""
-      length == 1 && first_letter_length == 2 -> ""
-      true -> "#{first_letter}#{prefix(String.slice(text, 1..-1), length-first_letter_length)}"
+      durability_length == 0 -> ""
+      durability_length == 1 && first_letter_durability_length == 2 -> ""
+      true -> "#{first_letter}#{prefix(String.slice(text, 1..-1), durability_length-first_letter_durability_length)}"
     end
   end
 
