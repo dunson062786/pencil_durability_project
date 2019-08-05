@@ -24,7 +24,14 @@ defmodule PencilDurabilityProject do
         ], 
         pad <> String.pad_trailing(prefix(text, pencil[:durability]), String.length(text))
       }
-      true -> {[{:max_durability, pencil[:max_durability]}, {:durability, pencil[:durability] - calculateLength(text)}, {:length, pencil[:length]}], pad <> text}
+      true -> {
+        [
+          {:max_durability, pencil[:max_durability]},
+          {:durability, pencil[:durability] - calculateLength(text)}, 
+          {:length, pencil[:length]}
+        ],
+        pad <> text
+      }
     end
   end
 
