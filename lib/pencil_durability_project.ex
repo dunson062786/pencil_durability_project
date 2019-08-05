@@ -39,9 +39,7 @@ defmodule PencilDurabilityProject do
     first_letter_length = calculateLength(first_letter)
     cond do
       length == 0 -> ""
-      length == 1 && first_letter_length == 1 -> first_letter
       length == 1 && first_letter_length == 2 -> ""
-      length == 2 && first_letter_length == 2 -> first_letter
       true -> "#{first_letter}#{prefix(String.slice(text, 1..-1), length-first_letter_length)}"
     end
   end
