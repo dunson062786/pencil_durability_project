@@ -36,20 +36,19 @@ defmodule PencilDurabilityProject do
       }
     end
   end
-
+  
   defp calculateDurabilityLength(text) do
     numberOfLowercaseLetters = Regex.scan(~r/[a-z]/, text) |> Enum.count
     numberOfUppercaseLetters = Regex.scan(~r/[A-Z]/, text) |> Enum.count
     numberOfUppercaseLetters*2 + numberOfLowercaseLetters
   end
 
-  defp prefix(text, durability_length) do
-    first_letter = String.at(text, 0)
+  defp prefix([first_letter | rest], durability_length) do
     first_letter_durability_length = calculateDurabilityLength(first_letter)
     cond do
       durability_length == 0 -> ""
       durability_length == 1 && first_letter_durability_length == 2 -> ""
-      true -> "#{first_letter}#{prefix(String.slice(text, 1..-1), durability_length-first_letter_durability_length)}"
+      true -> "#{first_letter}#{prefix(rest, durability_length-first_letter_durability_length)}"
     end
   end
 
