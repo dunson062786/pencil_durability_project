@@ -1,9 +1,11 @@
 defmodule PencilDurabilityProject do
 
+  def sharpen([length: 1] = pencil) do
+  # do wahtever
+  end
+
   def sharpen(pencil) do
-    if pencil[:length] != 1 do
-      [{:max_durability, pencil[:max_durability]}, {:durability, pencil[:max_durability]}, {:length, pencil[:length] - 1}]
-    end
+      KeywordList.update(pencil, :length, fn x -> x - 1)
   end
 
   def erase(pencil, pad) do
